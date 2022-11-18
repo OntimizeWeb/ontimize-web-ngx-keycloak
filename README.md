@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="#-introduction">Introduction</a> •
-  <a href="#-demo">Demo</a> •
+  <a href="#rocket-demo">Demo</a> •
   <a href="#-ideas">Ideas</a> •
   <a href="#gear-development">Development</a>
 </p>
