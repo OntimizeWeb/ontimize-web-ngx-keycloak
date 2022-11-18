@@ -19,7 +19,7 @@ This library helps to use Keycloak in OntimizeWeb applications. It provides  the
 
 ### 📖 Documentation
 
-Check out our [documentation site](https://ontimizeweb.github.io/docs/v8/keycloak/overview/) to know more details.
+Check out our [documentation site](https://ontimizeweb.github.io/docs/v8/keycloak/overview/) to learn how to install and use it into an OntimizeWeb application.
 
 ## :rocket: Demo
 
