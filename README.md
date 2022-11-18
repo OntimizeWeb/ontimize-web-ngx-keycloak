@@ -41,13 +41,8 @@ Follow the next steps:
 ```bash
 npm install
 ```
-  - cd projects/ontimize-web-ngx-keycloak
-```bash
-npm install
-```
-
 
 ### Build `ontimize-web-ngx-keycloack`
 
-Run `npm run build` to execute the build process that will generate the dist folder and a .tgz file.
+Run `npm run build && cd dist && npm pack` to execute the build process that will generate the dist folder and a .tgz file.
 You can use this .tgz file to install the library in your project through the package.json file.
