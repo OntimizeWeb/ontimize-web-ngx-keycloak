@@ -1,6 +1,6 @@
 {
   "name": "ontimize-web-ngx-keycloak",
-  "version": "8.1.0",
+  "version": "9.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,7 +21,7 @@
     "@angular/router": "~8.2.14",
     "keycloak-angular": "~7.2.0",
     "keycloak-js": "~9.0.3",
-    "ontimize-web-ngx": "^8.3.0",
+    "ontimize-web-ngx": "C:/Users/tomas.fuentes/repos/ontimize-web-ngx/dist/ontimize-web-ngx-9.0.0-rc.0.tgz",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
