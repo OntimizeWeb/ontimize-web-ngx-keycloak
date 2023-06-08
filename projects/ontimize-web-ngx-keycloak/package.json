@@ -11,7 +11,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "keycloak-angular": "^10.0.2",
+    "keycloak-angular": "9.3.2",
     "keycloak-js": "^15.0.0",
     "tslib": "^2.0.0"
   },
