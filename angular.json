@@ -28,9 +28,21 @@
             "tsConfig": "projects/ontimize-web-ngx-keycloak/tsconfig.spec.json",
             "karmaConfig": "projects/ontimize-web-ngx-keycloak/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ontimize-web-ngx-keycloak/**/*.ts",
+              "projects/ontimize-web-ngx-keycloak/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "ontimize-web-ngx-keycloak"
+  "defaultProject": "ontimize-web-ngx-keycloak",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
