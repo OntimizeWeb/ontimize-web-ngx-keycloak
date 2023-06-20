@@ -1,7 +1,7 @@
 {
   "name": "ontimize-web-ngx-keycloak",
   "homepage": "https://github.com/OntimizeWeb/ontimize-web-ngx-keycloak#readme",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "Ontimize Web framework using Angular 8",
   "bugs": "https://github.com/OntimizeWeb/ontimize-web-ngx-keycloak/issues",
   "author": "Imatia S.L.",
@@ -16,8 +16,8 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "~13.4.0",
-    "@angular/core": "~13.4.0",
-    "ontimize-web-ngx": "file:../ontimize-web-ngx/dist/ontimize-web-ngx-13.0.0.tgz"
+    "@angular/common": "~14.3.0",
+    "@angular/core": "~14.3.0",
+    "ontimize-web-ngx": "file:../ontimize-web-ngx/dist/ontimize-web-ngx-14.0.0.tgz"
   }
 }
