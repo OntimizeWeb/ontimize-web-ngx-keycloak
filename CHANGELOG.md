@@ -1,6 +1,6 @@
 ## 8.2.0 (2022-07-06)
 ### Features
-* **Multitenant support**: added support for authenticating with Keacloak multitenants for OntimizeWeb applications. ([be855c9](https://github.com/OntimizeWeb/ontimize-web-ngx-keycloak/commit/be855c93116812388346fdf451081b2cf65bc717))
+* **Multitenant support**: added support for authenticating with Keycloak multitenants for OntimizeWeb applications. ([be855c9](https://github.com/OntimizeWeb/ontimize-web-ngx-keycloak/commit/be855c93116812388346fdf451081b2cf65bc717))
 
 
 ## 8.1.0 (2022-02-27)
