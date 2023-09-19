@@ -24,7 +24,15 @@ module.exports = function (config) {
       ],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    sonarQubeUnitReporter: {
+      sonarQubeVersion: 'LATEST',
+      outputFile: '../../reports/ut_report.xml',
+      overrideTestDescription: true,
+      testPaths: ['./projects/ontimize-web-ngx-keycloak/src'],
+      testFilePattern: '.spec.ts',
+      useBrowserName: false
+    },
+    reporters: ['progress', 'kjhtml', 'sonarqubeUnit', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
