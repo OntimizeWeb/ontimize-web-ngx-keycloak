@@ -37,14 +37,13 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
     this.cookieService = injector.get<CookieService>(CookieService as Type<CookieService>);
     this.appConfig = injector.get<AppConfig>(AppConfig as Type<AppConfig>);
 
-    this.keycloakService.keycloakEvents$.subscribe(async (e: KeycloakEvent) => {
+    this.keycloakService.keycloakEvents$.subscribe((e: KeycloakEvent) => {
       if (e.type === KeycloakEventType.OnTokenExpired) {
         this.updateToken();
       } else if (e.type === KeycloakEventType.OnAuthSuccess) {
         this.keycloakService.getToken().then(token => {
           if (token) {
             this.startAutoUpdateToken(4);
-
             let username = localStorage.getItem(OKeycloakMultitenantAuthService.KEYCLOAK_LOGINHINT_KEY);
             if (username) {
               this.onLoginSuccess(token, username);
