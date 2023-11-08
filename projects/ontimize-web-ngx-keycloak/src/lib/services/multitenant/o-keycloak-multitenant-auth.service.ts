@@ -191,11 +191,11 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
           this.keycloakService.login(koptions).then(() => {
             resolve();
           }, (err) => {
-            reject('Failed to login: ' + err);
+            reject(new Error('Failed to login: ' + err));
           });
         }
       }, (err) => {
-        reject('Failed to login: ' + err);
+        reject(new Error('Failed to login: ' + err));
       });
     });
   }
@@ -253,10 +253,10 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
             client: tenantInfo[config.clientKey]
           });
         } else {
-          reject('Failed to get the tenant info');
+          reject(new Error('Failed to get the tenant info'));
         }
       }, (err) => {
-        reject('Failed to get the tenant info: ' + err);
+        reject(new Error('Failed to get the tenant info: ' + err));
       });
     });
   }
@@ -297,13 +297,13 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
               client: tenantInfo[config.clientKey]
             });
           } else {
-            reject('Failed to parse the tenant info');
+            reject(new Error('Failed to parse the tenant info'));
           }
         } else {
-          reject('Failed to get the tenant info');
+          reject(new Error('Failed to get the tenant info'));
         }
       }, (err) => {
-        reject('Failed to get the tenant info: ' + err.message);
+        reject(new Error('Failed to get the tenant info: ' + err.message));
       });
     });
   }
@@ -332,7 +332,7 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
           reject(err);
         });
       }, (err) => {
-        reject('Failed to configure Keycloak: ' + err);
+        reject(new Error('Failed to configure Keycloak: ' + err));
       });
     });
   }
