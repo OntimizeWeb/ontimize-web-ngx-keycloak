@@ -40,7 +40,7 @@ export class OMultitenantInterceptor implements HttpInterceptor {
             if (err.status === 401 || err.status === 403) {
               this.router.navigate([Codes.LOGIN_ROUTE], { queryParams: { 'status': err.status } });
             }
-            return throwError(err);
+            return throwError(() => err);
           }
         }));
       } else {
