@@ -205,7 +205,7 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
 
     return new Promise(async (resolve) => {
       if (this.keycloakService.getKeycloakInstance()) {
-        let redirectUri = this.getFullUrl((redirectUrl) ? redirectUrl : '/');
+        let redirectUri = this.getFullUrl(redirectUrl || '/');
         // Fix issue with renamed parameters in newer versions of the Keycloak server
         //this.keycloakService.logout(redirectUri)
         let logoutUrl = this.createLogoutUrl(redirectUri);
@@ -242,21 +242,23 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
         headers: headers,
         params: params
       };
-      this.httpClient.get(url, options).subscribe((tenantInfo: any) => {
-        if (tenantInfo && Util.isObject(tenantInfo)
-          && tenantInfo.hasOwnProperty(config.urlKey)
-          && tenantInfo.hasOwnProperty(config.realmKey)
-          && tenantInfo.hasOwnProperty(config.clientKey)) {
-          resolve({
-            url: tenantInfo[config.urlKey],
-            realm: tenantInfo[config.realmKey],
-            client: tenantInfo[config.clientKey]
-          });
-        } else {
-          reject(new Error('Failed to get the tenant info'));
+      this.httpClient.get(url, options).subscribe({
+        next: (tenantInfo: any) => {
+          if (tenantInfo && Util.isObject(tenantInfo)
+            && tenantInfo.hasOwnProperty(config.urlKey)
+            && tenantInfo.hasOwnProperty(config.realmKey)
+            && tenantInfo.hasOwnProperty(config.clientKey)) {
+            resolve({
+              url: tenantInfo[config.urlKey],
+              realm: tenantInfo[config.realmKey],
+              client: tenantInfo[config.clientKey]
+            });
+          } else {
+            reject(new Error('Failed to get the tenant info'));
+          }
+        }, error: (err) => {
+          reject(new Error('Failed to get the tenant info: ' + err));
         }
-      }, (err) => {
-        reject(new Error('Failed to get the tenant info: ' + err));
       });
     });
   }
@@ -284,26 +286,28 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
         filter: filter,
         columns: columns
       });
-      this.httpClient.post(url, body, options).subscribe((resp: any) => {
-        if (resp.code === Codes.ONTIMIZE_SUCCESSFUL_CODE && Util.isDefined(resp.data)
-          && resp.data.length === 1 && Util.isObject(resp.data[0])) {
-          let tenantInfo = resp.data[0];
-          if (tenantInfo.hasOwnProperty(config.urlKey)
-            && tenantInfo.hasOwnProperty(config.realmKey)
-            && tenantInfo.hasOwnProperty(config.clientKey)) {
-            resolve({
-              url: tenantInfo[config.urlKey],
-              realm: tenantInfo[config.realmKey],
-              client: tenantInfo[config.clientKey]
-            });
+      this.httpClient.post(url, body, options).subscribe({
+        next: (resp: any) => {
+          if (resp.code === Codes.ONTIMIZE_SUCCESSFUL_CODE && Util.isDefined(resp.data)
+            && resp.data.length === 1 && Util.isObject(resp.data[0])) {
+            let tenantInfo = resp.data[0];
+            if (tenantInfo.hasOwnProperty(config.urlKey)
+              && tenantInfo.hasOwnProperty(config.realmKey)
+              && tenantInfo.hasOwnProperty(config.clientKey)) {
+              resolve({
+                url: tenantInfo[config.urlKey],
+                realm: tenantInfo[config.realmKey],
+                client: tenantInfo[config.clientKey]
+              });
+            } else {
+              reject(new Error('Failed to parse the tenant info'));
+            }
           } else {
-            reject(new Error('Failed to parse the tenant info'));
+            reject(new Error('Failed to get the tenant info'));
           }
-        } else {
-          reject(new Error('Failed to get the tenant info'));
+        }, error: (err) => {
+          reject(new Error('Failed to get the tenant info: ' + err.message));
         }
-      }, (err) => {
-        reject(new Error('Failed to get the tenant info: ' + err.message));
       });
     });
   }
