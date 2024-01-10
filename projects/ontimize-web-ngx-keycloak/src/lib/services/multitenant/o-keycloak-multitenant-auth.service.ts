@@ -376,7 +376,7 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
     let url = path;
     if (!url.startsWith('http')) {
       let basePath = this.locationStrategy.getBaseHref();
-      if (basePath.substring(basePath.length - 1) === '/') basePath = basePath.substring(0, basePath.length - 1);
+      if (basePath.endsWith('/')) basePath = basePath.substring(0, basePath.length - 1);
       url = location.origin + basePath + url;
     }
     return url;
@@ -396,7 +396,7 @@ export class OKeycloakMultitenantAuthService extends MultitenantAuthService {
 
     this.stopAutoUpdateToken();
 
-    if (this.config && this.config.sharedTenantKey) this.cookieService.delete(this.config.sharedTenantKey, OKeycloakMultitenantAuthService.COOKIE_PATH, this.getDomain());
+    if (this.config?.sharedTenantKey) this.cookieService.delete(this.config.sharedTenantKey, OKeycloakMultitenantAuthService.COOKIE_PATH, this.getDomain());
     localStorage.removeItem(OKeycloakMultitenantAuthService.APP_TENANTID_KEY);
     localStorage.removeItem(OKeycloakMultitenantAuthService.KEYCLOAK_LOGINHINT_KEY);
 
